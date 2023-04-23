@@ -213,28 +213,3 @@ Copy the commands to join other master nodes and worker nodes.
 ```
 kubectl --kubeconfig=/etc/kubernetes/admin.conf create -f https://docs.projectcalico.org/v3.18/manifests/calico.yaml
 ```
-
-## Join other master nodes to the cluster
-> Use the respective kubeadm join commands you copied from the output of kubeadm init command on the first master.
-
-> IMPORTANT: Don't forget the --apiserver-advertise-address option to the join command when you join the other master nodes.
-
-## Join worker nodes to the cluster
-> Use the kubeadm join command you copied from the output of kubeadm init command on the first master
-
-
-## Downloading kube config to your local machine
-On your host machine
-```
-mkdir ~/.kube
-scp root@192.168.27.101:/etc/kubernetes/admin.conf ~/.kube/config
-```
-Password for root account is kubeadmin (if you used my Vagrant setup)
-
-## Verifying the cluster
-```
-kubectl cluster-info
-kubectl get nodes
-```
-
-Have Fun!!
