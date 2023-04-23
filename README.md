@@ -6,18 +6,14 @@ Follow this documentation to set up a highly available Kubernetes cluster using 
 
 This documentation guides you in setting up a cluster with three master nodes, one worker node and two load balancer node using HAProxy and Keepalived.
 
-## Vagrant Environment
+## Environment
 |Role|FQDN|IP|OS|RAM|CPU|
 |----|----|----|----|----|----|
-|Load Balancer|loadbalancer1.example.com|192.168.27.51|Ubuntu 20.04|512M|1|
-|Load Balancer|loadbalancer2.example.com|192.168.27.52|Ubuntu 20.04|512M|1|
-|Master|kmaster1.example.com|192.168.27.101|Ubuntu 20.04|2G|2|
-|Master|kmaster2.example.com|192.168.27.102|Ubuntu 20.04|2G|2|
-|Master|kmaster3.example.com|192.168.27.103|Ubuntu 20.04|2G|2|
-|Worker|kworker1.example.com|192.168.27.201|Ubuntu 20.04|2G|2|
-
-> * Password for the **root** account on all these virtual machines is **kubeadmin**
-> * Perform all the commands as root user unless otherwise specified
+|Load Balancer|haproxy01|192.168.27.51|CentOS 7|512M|1|
+|Load Balancer|haproxy02|192.168.27.52|CentOS 7|512M|1|
+|Master|master01|192.168.27.101|CentOS 7|2G|2|
+|Master|master02|192.168.27.102|CentOS 7|2G|2|
+|Worker|worker01|192.168.27.201|CentOS 7|1G|2|
 
 ### Virtual IP managed by Keepalived on the load balancer nodes
 |Virtual IP|
@@ -27,18 +23,8 @@ This documentation guides you in setting up a cluster with three master nodes, o
 ## Pre-requisites
 If you want to try this in a virtualized environment on your workstation
 * Virtualbox installed
-* Vagrant installed
-* Host machine has atleast 12 cores
+* Host machine has atleast 8 cores
 * Host machine has atleast 16G memory
-
-## Bring up all the virtual machines
-```
-vagrant up
-```
-If you are on Linux host and want to use KVM/Libvirt
-```
-vagrant up --provider libvirt
-```
 
 ## Set up load balancer nodes (loadbalancer1 & loadbalancer2)
 ##### Install Keepalived & Haproxy
