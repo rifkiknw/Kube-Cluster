@@ -1,8 +1,5 @@
 # Kube-Cluster
-I copied from the original source at https://github.com/justmeandopensource/kubernetes.git
-Don't forget to visit the original source
-
-
+I copied from the original source at https://github.com/justmeandopensource/kubernetes.git and don't forget to visit the original source for more details
 
 # Set up a Highly Available Kubernetes Cluster using kubeadm
 Follow this documentation to set up a highly available Kubernetes cluster using __Ubuntu 20.04 LTS__ with keepalived and haproxy
