@@ -1,5 +1,7 @@
 # Kube-Cluster
 I copied from the original source at https://github.com/justmeandopensource/kubernetes.git
+Don't forget to visit the original source
+
 
 
 # Set up a Highly Available Kubernetes Cluster using kubeadm
