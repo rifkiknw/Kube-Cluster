@@ -29,7 +29,7 @@ If you want to try this in a virtualized environment on your workstation
 ## Set up load balancer nodes (loadbalancer1 & loadbalancer2)
 ##### Install Keepalived & Haproxy
 ```
-apt update && apt install -y keepalived haproxy
+yum install -y keepalived haproxy
 ```
 ##### configure keepalived
 On both nodes create the health check script /etc/keepalived/check_apiserver.sh
