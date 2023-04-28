@@ -124,7 +124,6 @@ systemctl disable --now ufw
 ```
 ##### Enable and Load Kernel modules
 ```
-{
 cat >> /etc/modules-load.d/containerd.conf <<EOF
 overlay
 br_netfilter
@@ -132,11 +131,9 @@ EOF
 
 modprobe overlay
 modprobe br_netfilter
-}
 ```
 ##### Add Kernel settings
 ```
-{
 cat >>/etc/sysctl.d/kubernetes.conf<<EOF
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables  = 1
@@ -144,38 +141,31 @@ net.ipv4.ip_forward                 = 1
 EOF
 
 sysctl --system
-}
 ```
 ##### Install containerd runtime
 ```
-{
-  yum install -y yum-utils device-mapper-persistent-data lvm2
-  yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-  yum install -y docker-ce-19.03.12
-  systemctl enable --now docker
-}
+yum install -y yum-utils device-mapper-persistent-data lvm2
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum install -y docker-ce-19.03.12
+systemctl enable --now docker
 ```
 ##### Add yum repo for kubernetes
 ```
-{
-  cat >>/etc/yum.repos.d/kubernetes.repo<<EOF
-  [kubernetes]
-  name=Kubernetes
-  baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
-  enabled=1
-  gpgcheck=1
-  repo_gpgcheck=1
-  gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
-          https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-  EOF
-}
+cat >>/etc/yum.repos.d/kubernetes.repo<<EOF
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
+        https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
 ```
 ##### Install Kubernetes components and enable kubelet service
 ```
-{
-  yum install -y kubeadm-1.18.5-0 kubelet-1.18.5-0 kubectl-1.18.5-0
-  systemctl enable --now kubelet
-}
+yum install -y kubeadm-1.18.5-0 kubelet-1.18.5-0 kubectl-1.18.5-0
+systemctl enable --now kubelet
 ```
 ##### If you encounter errors around systemd, you need to update the docker cgroup driver
 ```
